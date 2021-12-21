@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment-base
+  
+spec:
+  selector:
+    matchLabels:
+      app: k-app-base
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: k-app-base
+    spec:
+      containers:
+        - name: python-docker
+          image: sample-app-v1/python-docker:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: demo-k-app-configmap
+            # - secretRef:
+            #     name: demo-k-app-secret

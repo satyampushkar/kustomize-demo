@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../../base
+
+namespace: stage-ns
+
+# nameSuffix: -stage
+
+commonLabels:
+  app: k-app-stage
+
+configMapGenerator:
+- name: demo-k-app-configmap
+  envs:
+  - application.properties
+
+patchesStrategicMerge:
+  - ingress.yaml

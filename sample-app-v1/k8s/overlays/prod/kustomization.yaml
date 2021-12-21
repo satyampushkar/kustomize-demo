@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../../base
+
+namespace: prod-ns
+
+# nameSuffix: -prod
+
+commonLabels:
+  app: k-app-prod
+
+configMapGenerator:
+- name: demo-k-app-configmap
+  envs:
+  - .env
+
+patchesStrategicMerge:
+  - ingress.yaml
+  - increase_replicas.yaml
+  - set_memory.yaml

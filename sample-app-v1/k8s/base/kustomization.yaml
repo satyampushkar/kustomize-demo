@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: default-ns
+
+# namePrefix: demo-k-
+# nameSuffix: -default
+
+commonLabels:
+  app: k-app-base
+
+resources:
+  - deployment.yaml
+  - ingress.yaml
+  - namespace.yaml
+  - service.yaml
