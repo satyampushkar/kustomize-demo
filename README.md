@@ -1,2 +1,2 @@
 # kustomize-demo
- Demo app to showcase Kustomization capabilities
+ Demo app to showcase Kustomization capabilities.
